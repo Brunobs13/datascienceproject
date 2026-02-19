@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from urllib.parse import urlparse
@@ -6,15 +5,15 @@ import mlflow
 import mlflow.sklearn
 import numpy as np
 import joblib
+from pathlib import Path
 
 from src.datascience.entity.config_entity import ModelEvaluationConfig
 from src.datascience.constants import *
 from src.datascience.utils.common import read_yaml, create_directories,save_json
 
-#import os
-#os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/krishnaik06/datascienceproject.mlflow"
-#os.environ["MLFLOW_TRACKING_USERNAME"]="krishnaik06"
-#os.environ["MLFLOW_TRACKING_PASSWORD"]="7104284f1bb44ece21e0e2adb4e36a250ae3251f"
+os.environ["MLFLOW_TRACKING_URI"] = "https://dagshub.com/Brunobs13/datascienceproject.mlflow"
+os.environ["MLFLOW_TRACKING_USERNAME"] = "Brunobs13"
+os.environ["MLFLOW_TRACKING_PASSWORD"] = "your_token_here"
 
 
 class ModelEvaluation:

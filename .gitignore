@@ -2,3 +2,7 @@ venv/
 logs/
 artifacts/
 .DS_Store
+__pycache__/
+*.pyc
+mlflow.db
+mlruns/
