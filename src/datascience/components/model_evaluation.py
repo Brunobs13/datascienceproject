@@ -14,7 +14,7 @@ from src.datascience.utils.common import read_yaml, create_directories,save_json
 
 os.environ["MLFLOW_TRACKING_URI"] = "https://dagshub.com/Brunobs13/datascienceproject.mlflow"
 os.environ["MLFLOW_TRACKING_USERNAME"] = "Brunobs13"
-os.environ["MLFLOW_TRACKING_PASSWORD"] = "your_token_here"
+os.environ["MLFLOW_TRACKING_PASSWORD"] = "1f149516a467ec21918d88945210915252175780"
 
 
 class ModelEvaluation:
@@ -36,6 +36,7 @@ class ModelEvaluation:
         test_y = test_data[[self.config.target_column]]
 
 
+        mlflow.set_tracking_uri(self.config.mlflow_uri)
         mlflow.set_registry_uri(self.config.mlflow_uri)
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
