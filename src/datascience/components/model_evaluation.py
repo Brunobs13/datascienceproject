@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from urllib.parse import urlparse
@@ -65,4 +66,6 @@ class ModelEvaluation:
                 mlflow.sklearn.log_model(model, "model", registered_model_name="ElasticnetModel")
             else:
                 mlflow.sklearn.log_model(model, "model")
+
+                
     

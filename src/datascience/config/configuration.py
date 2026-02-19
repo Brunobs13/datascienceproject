@@ -1,3 +1,10 @@
+import sys
+from pathlib import Path
+
+# Allow running this file directly (python path/to/configuration.py)
+if __package__ in (None, ""):
+    sys.path.append(str(Path(__file__).resolve().parents[3]))
+
 from src.datascience.constants import *
 from src.datascience.utils.common import read_yaml, create_directories
 

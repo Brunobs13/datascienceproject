@@ -3,11 +3,40 @@ import yaml
 from src.datascience import logger
 import json
 import joblib
-from ensure import ensure_annotations
-from box import ConfigBox
 from pathlib import Path
 from typing import Any
-from box.exceptions import BoxValueError
+
+try:
+    from ensure import ensure_annotations
+except ImportError:
+    # Fallback when `ensure` is not installed.
+    def ensure_annotations(func):
+        return func
+
+try:
+    from box import ConfigBox
+    from box.exceptions import BoxValueError
+except ImportError:
+    class BoxValueError(ValueError):
+        pass
+
+    class ConfigBox(dict):
+        """Minimal fallback with attribute-style access."""
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            for key, value in list(self.items()):
+                if isinstance(value, dict):
+                    self[key] = ConfigBox(value)
+
+        def __getattr__(self, item):
+            try:
+                return self[item]
+            except KeyError as exc:
+                raise AttributeError(item) from exc
+
+        def __setattr__(self, key, value):
+            self[key] = value
 
 
 @ensure_annotations
